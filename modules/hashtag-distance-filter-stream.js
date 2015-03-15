@@ -1,16 +1,16 @@
 var util = require('util');
-var stream = require('stream');
-var _ = require('lodash');
+var Transform = require('stream').Transform;
 var mongoose = require('mongoose');
 var Place = require('../models/place');
+var _ = require('lodash');
 
-var R = 6371;
+const R = 6371;
 
 var HashtagStream = function () {
-    stream.Transform.call(this, {objectMode: true});
+    Transform.call(this, {objectMode: true});
 };
 
-util.inherits(HashtagStream, stream.Transform);
+util.inherits(HashtagStream, Transform);
 
 HashtagStream.prototype._transform = function(query, encoding, done){
 

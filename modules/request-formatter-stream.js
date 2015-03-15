@@ -1,13 +1,13 @@
 var util = require('util');
-var stream = require('stream');
+var Transform = require('stream').Transform;
 
 var requiredFields = ['hashtags', 'lat', 'lon', 'distance'];
 
 var FormatRequestStream = function(){
-    stream.Transform.call(this, {objectMode: true});
+    Transform.call(this, {objectMode: true});
 };
 
-util.inherits(FormatRequestStream, stream.Transform);
+util.inherits(FormatRequestStream, Transform);
 
 FormatRequestStream.prototype._transform = function(query, encoding, done){
 
