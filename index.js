@@ -1,44 +1,33 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var mongoose = require('mongoose');
 
-var placesCache = require('./modules/places-cache');
-
-var hashtagFilter = require('./modules/hashtag-filter-stream');
-var distanceFilter = require('./modules/distance-filter-stream');
 var requestFormatter = require('./modules/request-formatter-stream');
+var hashtagDistanceFilter = require('./modules/hashtag-distance-filter-stream');
 
-placesCache.init();
-
-var timeAdder = 0;
-var counter = 0;
-var startDate = 0;
+mongoose.connect('mongodb://localhost/pecho');
 
 app.get('/places', function(req, res, next){
 
-    startDate = Date.now();
-    counter++;
-
-    var hashtagFilterStream = hashtagFilter();
-    var distanceFilterStream = distanceFilter();
     var requestFormatterStream = requestFormatter();
+    var hashtagDistanceFilterStream = hashtagDistanceFilter();
 
     requestFormatterStream
-        .pipe(hashtagFilterStream).on('no-result', handleNoresult).on('result', handleResult.bind(null, res))
-        .pipe(distanceFilterStream).on('no-result', handleNoresult).on('result', handleResult.bind(null, res));
+        .pipe(hashtagDistanceFilterStream)
+        .on('no-result', handleNoresult.bind(null, res))
+        .on('result', handleResult.bind(null, res))
 
-    requestFormatterStream.write(req.url)
+    requestFormatterStream.write(req.query)
 });
 
-function handleNoresult(reason){
+function handleNoresult(res, reason){
     console.log('No result because of: ', reason);
+    res.json([]);
 }
 
 function handleResult(res, validPlaces){
-    console.log('Duration : ', Date.now() - startDate);
-    timeAdder += (Date.now() - startDate);
-    console.log('Average duration :', timeAdder / counter);
-
+    console.log('results sent');
     res.json(validPlaces);
 }
 
