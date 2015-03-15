@@ -16,7 +16,7 @@ HashtagStream.prototype._transform = function (query, encoding, done) {
     var validPlaces = places.filter(function(place){
         return _.intersection(place.hashtags, query.hashtags).length > 0;
     })
-    if(validPlaces.length === 0) return done(new Error('No valid Places'));
+    if(validPlaces.length === 0) return this.emit('no-result', 'No places for these hashtags');
 
     query.validPlaces = validPlaces;
 

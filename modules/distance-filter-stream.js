@@ -13,9 +13,12 @@ util.inherits(DistanceStream, stream.Transform);
 DistanceStream.prototype._transform = function (query, encoding, done) {
 
     var validPlaces = [];
+    var self = this;
 
     async.each(query.validPlaces, checkDistance, function(err){
         if(err) return done(err);
+        if(validPlaces.length === 0) return self.emit('no-result', 'No places in your area');
+        self.emit('result', validPlaces);
         return done();
     });
 

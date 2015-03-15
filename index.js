@@ -10,19 +10,37 @@ var requestFormatter = require('./modules/request-formatter-stream');
 
 placesCache.init();
 
+var timeAdder = 0;
+var counter = 0;
+var startDate = 0;
+
 app.get('/places', function(req, res, next){
-    
+
+    startDate = Date.now();
+    counter++;
+
     var hashtagFilterStream = hashtagFilter();
     var distanceFilterStream = distanceFilter();
     var requestFormatterStream = requestFormatter();
 
     requestFormatterStream
-        .pipe(hashtagFilterStream)
-        .pipe(distanceFilterStream);
-
+        .pipe(hashtagFilterStream).on('no-result', handleNoresult).on('result', handleResult.bind(null, res))
+        .pipe(distanceFilterStream).on('no-result', handleNoresult).on('result', handleResult.bind(null, res));
 
     requestFormatterStream.write(req.url)
 });
+
+function handleNoresult(reason){
+    console.log('No result because of: ', reason);
+}
+
+function handleResult(res, validPlaces){
+    console.log('Duration : ', Date.now() - startDate);
+    timeAdder += (Date.now() - startDate);
+    console.log('Average duration :', timeAdder / counter);
+
+    res.json(validPlaces);
+}
 
 app.use(function(err, req, res, next){
     console.log('Error Handler');
