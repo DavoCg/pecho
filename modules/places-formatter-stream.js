@@ -17,11 +17,8 @@ PlaceFormatterStream.prototype._transform = function(query, encoding, done){
     var queryLat = query.lat;
     var queryLon = query.lon;
 
-    console.log(places);
-
     async.map(places, augment, function(err, augmentedPlaces){
         if(err) return done(err);
-        console.log('augmented Places', augmentedPlaces);
         self.emit('result', augmentedPlaces);
         return done();
     });
@@ -44,14 +41,17 @@ PlaceFormatterStream.prototype._transform = function(query, encoding, done){
          * 100% if all query hashtags are present in place hashtags
          */
         place.matching = getMatching(query.hashtags, place.hashtags);
-        
+
         return callback(null, place);
     }
 };
 
-function getMatching(firstArray, secondArray){
-    return (_.intersection(firstArray, secondArray).length / firstArray.length) * 100
-
+function getMatching(queryArr, placeArr){
+    var intersection = _.intersection(queryArr, placeArr);
+    return {
+            percent: ((intersection.length / queryArr.length) * 100).toFixed()/1,
+            hashtags : intersection
+        }
 }
 
 module.exports = function(){return new PlaceFormatterStream();};

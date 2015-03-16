@@ -4,7 +4,7 @@
   "description": "Back-end code of pecho.io app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,10 @@
     "lodash": "^3.5.0",
     "mongoose": "^3.8.25",
     "request": "^2.53.0"
-  }
+  },
+  "devDependencies": {
+    "chai": "^2.1.2",
+    "precommit-hook": "^2.0.1"
+  },
+  "pre-commit": ["test"]
 }

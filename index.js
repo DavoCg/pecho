@@ -30,7 +30,6 @@ function handleNoresult(res, reason){
 }
 
 function handleResult(res, validPlaces){
-    console.log('results sent');
     res.json(validPlaces);
 }
 

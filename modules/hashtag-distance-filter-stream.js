@@ -27,15 +27,15 @@ HashtagStream.prototype._transform = function(query, encoding, done){
         .exec(function(err, result){
             if(err) return done(err);
             if(!result.length) return self.emit('no-result', 'No place matching');
-            var formattedResult = result.map(toObject);
+
+            var formattedResult = result.map(function(place){
+                return place.toObject();
+            });
             query.places = formattedResult;
+
             self.push(query);
             return done();
         });
-
-    function toObject(place){
-        return place.toObject();
-    }
 };
 
 module.exports = function(){return new HashtagStream();};
