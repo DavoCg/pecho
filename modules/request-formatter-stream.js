@@ -18,7 +18,7 @@ FormatRequestStream.prototype._transform = function(query, encoding, done){
         }
     });
     if(isMissingKey) return done(new Error('Missing or Empty field : ' + field));
-    
+
     query.hashtags = query.hashtags.split(',');
 
     this.push(query);

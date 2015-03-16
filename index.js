@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 
 var requestFormatter = require('./modules/request-formatter-stream');
 var hashtagDistanceFilter = require('./modules/hashtag-distance-filter-stream');
+var placeFormatter = require('./modules/places-formatter-stream');
 
 mongoose.connect('mongodb://localhost/pecho');
 
@@ -12,9 +13,11 @@ app.get('/places', function(req, res, next){
 
     var requestFormatterStream = requestFormatter();
     var hashtagDistanceFilterStream = hashtagDistanceFilter();
+    var placeFormatterStream = placeFormatter();
 
     requestFormatterStream
         .pipe(hashtagDistanceFilterStream)
+        .pipe(placeFormatterStream)
         .on('no-result', handleNoresult.bind(null, res))
         .on('result', handleResult.bind(null, res));
 
