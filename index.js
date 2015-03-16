@@ -16,7 +16,7 @@ app.get('/places', function(req, res, next){
     requestFormatterStream
         .pipe(hashtagDistanceFilterStream)
         .on('no-result', handleNoresult.bind(null, res))
-        .on('result', handleResult.bind(null, res))
+        .on('result', handleResult.bind(null, res));
 
     requestFormatterStream.write(req.query)
 });
