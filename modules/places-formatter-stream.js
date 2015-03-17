@@ -31,11 +31,10 @@ PlaceFormatterStream.prototype._transform = function(query, encoding, done){
         /**
          * distance between a place and the user geoloc
          */
-        var distance = geolib.getDistance(
+        place.distance = geolib.getDistance(
             {latitude: lat, longitude: lon},
             {latitude: queryLat, longitude: queryLon}
         );
-        place.distance = distance;
         /**
          * percent of matching between query hashtags and place hashtag
          * 100% if all query hashtags are present in place hashtags
@@ -55,6 +54,3 @@ function getMatching(queryArr, placeArr){
 }
 
 module.exports = function(){return new PlaceFormatterStream();};
-
-
-
