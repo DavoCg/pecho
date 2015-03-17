@@ -11,13 +11,13 @@ util.inherits(FormatRequestStream, Transform);
 
 FormatRequestStream.prototype._transform = function(query, encoding, done){
 
-    var isMissingKey = false;
+    var missingKey = false;
     requiredFields.forEach(function(field){
         if(!query.hasOwnProperty(field) || !query[field]){
-            isMissingKey = true;
+            missingKey = true;
         }
     });
-    if(isMissingKey) return done(new Error('Missing or Empty field : ' + field));
+    if(missingKey) return done(new Error('Missing or Empty field'))
 
     query.hashtags = query.hashtags.split(',');
 

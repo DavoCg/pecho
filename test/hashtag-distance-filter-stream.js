@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 
 
 describe('Hashtag-distance-filter-stream', function(){
-    it('should', function(done){
+    it('Expect to be cool !', function(done){
         return done();
     })
 });
