@@ -5,27 +5,26 @@ var async = require('async');
 
 var match = require('./matching-calculator');
 
-var PlaceFormatterStream = function () {
+var PlacesFormatterStream = function () {
     Transform.call(this, {objectMode: true});
 };
 
-util.inherits(PlaceFormatterStream, Transform);
+util.inherits(PlacesFormatterStream, Transform);
 
-PlaceFormatterStream.prototype._transform = function(query, encoding, done){
+PlacesFormatterStream.prototype._transform = function(query, encoding, done){
 
     var self = this;
     var places = query.places;
     var queryLat = query.lat;
     var queryLon = query.lon;
 
-    async.map(places, augment, function(err, augmentedPlaces){
+    async.map(places, augmentPlace, function(err, augmentedPlaces){
         if(err) return done(err);
         self.emit('result', augmentedPlaces);
         return done();
     });
 
-    function augment(place, callback){
-
+    function augmentPlace(place, callback){
         var lat = place.location[1];
         var lon = place.location[0];
 
@@ -42,4 +41,4 @@ PlaceFormatterStream.prototype._transform = function(query, encoding, done){
     }
 };
 
-module.exports = function(){return new PlaceFormatterStream();};
+module.exports = function(){return new PlacesFormatterStream();};
