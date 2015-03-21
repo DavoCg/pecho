@@ -22,13 +22,17 @@
     "express": "^4.12.2",
     "geolib": "^2.0.14",
     "google-distance": "^1.0.1",
+    "jsonwebtoken": "^4.2.1",
     "lodash": "^3.5.0",
     "mongoose": "^3.8.25",
+    "multer": "^0.1.8",
     "request": "^2.53.0"
   },
   "devDependencies": {
     "chai": "^2.1.2",
     "precommit-hook": "^2.0.1"
   },
-  "pre-commit": ["test"]
+  "pre-commit": [
+    "test"
+  ]
 }
