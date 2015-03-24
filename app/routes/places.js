@@ -9,7 +9,8 @@ var placesRoutes = function(app){
         });
     });
     app.get('/places/:id', authenticator, function getPlace(req, res, next){
-        places.getPlace(req.query, function(err, place){
+        var params = {query: req.query, id: req.params.id};
+        places.getPlace(params, function(err, place){
             if(err) return next(err);
             if(!place) return res.status(404).send('Not Found');
             return res.status(200).send(place);
