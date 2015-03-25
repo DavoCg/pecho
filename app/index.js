@@ -14,11 +14,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
 
 require('./routes/auth')(app);
+require('./routes/users')(app);
 require('./routes/places')(app);
 
 app.use(errorHandler);
 
-
-
 module.exports = app;
-

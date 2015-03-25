@@ -12,7 +12,14 @@ var placesRoutes = function(app){
         var params = {query: req.query, id: req.params.id};
         places.getPlace(params, function(err, place){
             if(err) return next(err);
-            if(!place) return res.status(404).send('Not Found');
+            if(!place) return res.status(404).send('Oups Place not found');
+            return res.status(200).send(place);
+        });
+    });
+    app.post('/places', authenticator, function addPlace(req, res, next){
+        var place = req.body;
+        places.addPlace(place, function(err, place){
+            if(err) return next(err);
             return res.status(200).send(place);
         });
     });
