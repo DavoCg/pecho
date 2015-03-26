@@ -27,7 +27,7 @@
     "is_js": "^0.7.3",
     "jsonwebtoken": "^4.2.1",
     "lodash": "^3.5.0",
-    "mongoose": "^3.8.25",
+    "mongoose": "3.8.25",
     "multer": "^0.1.8",
     "request": "^2.53.0"
   },
