@@ -4,6 +4,7 @@ var authenticator = require('authenticator');
 module.exports = function(app){
     app.post('/login', function(req, res, next){
         var credentials = req.body;
+        console.log(credentials);
         auth.login(credentials, function(err, result){
             if(err) return next(err);
             return res.status(result.statusCode).send(result.data);
