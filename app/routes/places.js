@@ -18,6 +18,8 @@ var placesRoutes = function(app){
     });
     app.post('/places', authenticator, function addPlace(req, res, next){
         var place = req.body;
+        place.location[0] = +place.location[0];
+        place.location[1] = +place.location[1];
         places.addPlace(place, function(err, place){
             if(err) return next(err);
             return res.status(200).send(place);
