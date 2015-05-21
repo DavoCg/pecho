@@ -1,8 +1,6 @@
 module.exports = {
-    all: {},
-    development: {
-        url: 'mongodb://localhost/pecho'
-    },
-    staging: {},
-    production: {}
+    all: {
+        host: 'localhost',
+        port: '9200'
+    }
 };

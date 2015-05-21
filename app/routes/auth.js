@@ -1,10 +1,12 @@
-var auth = require('controllers').auth;
+var getAuthMethods = require('controllers').auth;
 var authenticator = require('authenticator');
 
-module.exports = function(app){
+module.exports = function(app, client){
+
+    var auth = getAuthMethods(client);
+
     app.post('/login', function(req, res, next){
         var credentials = req.body;
-        console.log(credentials);
         auth.login(credentials, function(err, result){
             if(err) return next(err);
             return res.status(result.statusCode).send(result.data);

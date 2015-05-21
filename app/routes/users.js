@@ -1,6 +1,9 @@
-var users = require('controllers').users;
+var getUsersMethods = require('controllers').users;
 
-var usersRoutes = function(app){
+var usersRoutes = function(app, client){
+
+    var users = getUsersMethods(client);
+
     app.post('/users', function addUser(req, res, next){
         var user = req.body;
         users.addUser(user, function(err, result){
