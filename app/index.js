@@ -2,10 +2,14 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var cors = require('cors');
+var errorHandler = require('error-handlers').basic;
+
 var config = require('configator');
 var dbConfig = config.get('database');
+var serverConfig = config.get('server');
+
 var elasticsearch = require('elasticsearch');
-var errorHandler = require('error-handlers').basic;
+
 
 var client = new elasticsearch.Client({
     host: dbConfig.host + ':' + dbConfig.port
@@ -24,4 +28,5 @@ require('./routes/places')(app, client);
 
 app.use(errorHandler);
 
+app.config = serverConfig;
 module.exports = app;
