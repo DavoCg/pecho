@@ -10,7 +10,6 @@ var serverConfig = config.get('server');
 
 var elasticsearch = require('elasticsearch');
 
-
 var client = new elasticsearch.Client({
     host: dbConfig.host + ':' + dbConfig.port
 });
@@ -25,6 +24,7 @@ app.use(cors());
 require('./routes/auth')(app, client);
 require('./routes/users')(app, client);
 require('./routes/places')(app, client);
+require('./routes/health')(app, client);
 
 app.use(errorHandler);
 
