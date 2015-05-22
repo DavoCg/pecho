@@ -9,6 +9,7 @@ var placesRoutes = function(app, client){
     app.get('/places', /*authenticator,*/ function getPlaces(req, res, next){
         places.getPlaces(req.query, function(err, places){
             if(err) return next(err);
+            if(!places) return res.status(HTTPStatus.NOT_FOUND).send('Oups no results for your query');
             return res.status(HTTPStatus.OK).send(places);
         });
     });
