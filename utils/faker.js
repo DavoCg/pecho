@@ -21,7 +21,7 @@ var faker = {
         return "I'm the default description"
     },
     randImage: function(){
-        return 'http://yourlittleblackbook.vanons.netdna-cdn.com/wp-content/uploads/2014/10/moose-bangkok-ekkamai-11.jpg?2a99fe';
+        return 'http://placehold.it/400x300';
     }
 };
 
