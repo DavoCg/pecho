@@ -21,7 +21,7 @@ function deleteTemplate(callback){
 
 function addTemplate(callback){
     request
-        .put('http://localhost:9200/_template')
+        .put('http://localhost:9200/_template/places')
         .type('json')
         .send(template)
         .end(callback);
