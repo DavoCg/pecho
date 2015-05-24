@@ -19,6 +19,9 @@ var faker = {
     },
     randDescription: function(){
         return "I'm the default description"
+    },
+    randImage: function(){
+        return 'http://facebook.github.io/react/img/logo_og.png';
     }
 };
 
@@ -30,7 +33,8 @@ function createPlace(){
         name: faker.randName(),
         tags: faker.randTags(2),
         location: faker.randLocation(),
-        description: faker.randDescription()
+        description: faker.randDescription(),
+        imageURI: faker.randImage()
     }
 }
 
