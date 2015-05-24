@@ -25,6 +25,8 @@ var faker = {
 
 function createPlace(){
     return {
+        followed: chance.bool(),
+        isOpen: chance.bool(),
         name: faker.randName(),
         tags: faker.randTags(2),
         location: faker.randLocation(),
