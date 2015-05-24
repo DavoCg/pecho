@@ -21,7 +21,7 @@ var faker = {
         return "I'm the default description"
     },
     randImage: function(){
-        return 'http://www.ecodeal.fr/wp-content/uploads/2014/12/eat-sushi-reduction.jpg';
+        return 'http://yourlittleblackbook.vanons.netdna-cdn.com/wp-content/uploads/2014/10/moose-bangkok-ekkamai-11.jpg?2a99fe';
     }
 };
 
