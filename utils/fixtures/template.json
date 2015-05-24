@@ -1,0 +1,18 @@
+{
+  "template" : "places",
+  "settings" : {
+    "number_of_shards" : 5
+  },
+  "mappings": {
+    "restaurant": {
+      "_all":{
+        "enabled": true
+      },
+      "properties": {
+        "location": {
+          "type": "geo_point"
+        }
+      }
+    }
+  }
+}

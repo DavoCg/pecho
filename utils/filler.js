@@ -7,6 +7,7 @@ var nbRandoms = 100;
 
 async.eachLimit(generateRandoms(nbRandoms), 10, postData, function(err){
     if(err) return console.log(err);
+    return console.log('FINISH');
 });
 
 function postData(data, callback){

@@ -16,6 +16,9 @@ var faker = {
     },
     randTags: function(nb){
         return _.sample(availableTags, nb);
+    },
+    randDescription: function(){
+        return "I'm the default description"
     }
 };
 
@@ -24,7 +27,8 @@ function createPlace(){
     return {
         name: faker.randName(),
         tags: faker.randTags(2),
-        location: faker.randLocation()
+        location: faker.randLocation(),
+        description: faker.randDescription()
     }
 }
 
