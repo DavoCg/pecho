@@ -21,7 +21,7 @@ var faker = {
         return "I'm the default description"
     },
     randImage: function(){
-        return 'http://facebook.github.io/react/img/logo_og.png';
+        return 'http://www.ecodeal.fr/wp-content/uploads/2014/12/eat-sushi-reduction.jpg';
     }
 };
 
