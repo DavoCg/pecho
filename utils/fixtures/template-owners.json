@@ -1,0 +1,22 @@
+{
+  "template": "owners",
+  "settings": {
+    "number_of_shards": 5
+  },
+  "mappings": {
+    "account": {
+      "dynamic_templates": [
+        {
+          "string_fields": {
+            "match": "*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

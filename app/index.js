@@ -22,7 +22,6 @@ app.use(multer());
 app.use(cors());
 
 require('./routes/auth')(app, client);
-require('./routes/users')(app, client);
 require('./routes/places')(app, client);
 require('./routes/health')(app, client);
 
