@@ -1,37 +1,24 @@
 {
-  "name": "pecho",
-  "version": "0.0.1",
-  "description": "Back-end code of pecho.io app",
+  "name": "component-api",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DavoCg/pecho.git"
-  },
-  "author": "David Cingala",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/DavoCg/pecho/issues"
-  },
-  "homepage": "https://github.com/DavoCg/pecho",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "MD5": "^1.2.2",
-    "async": "^0.9.0",
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.12.0",
+    "adotcomponents": "^2.9.7",
+    "adotconfig": "^1.2.0",
+    "async": "^1.2.0",
+    "body-parser": "^1.12.4",
     "chance": "^0.7.5",
-    "cors": "^2.5.3",
     "elasticsearch": "^4.1.0",
-    "express": "^4.12.2",
-    "geolib": "^2.0.14",
-    "google-distance": "^1.0.1",
+    "express": "^4.12.4",
     "http-status": "^0.1.8",
-    "jsonwebtoken": "^4.2.1",
-    "lodash": "^3.5.0",
-    "multer": "^0.1.8",
-    "request": "^2.53.0",
+    "jsonwebtoken": "^5.0.1",
+    "lodash": "^3.9.3",
     "superagent": "^1.2.0",
     "validator": "^3.40.0"
   },

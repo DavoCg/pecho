@@ -1,5 +1,10 @@
-var app = require('./app');
+var components = require('adotcomponents');
+var config = require('adotconfig');
+var pkg = require('./package.json');
 
-app.listen(app.config.port, app.config.bind, function(){
-    console.log('Server listen port ' + app.config.port);
+components.load(function onLoad(err){
+    if(err) throw err;
+    return components.create(function onCreate(err){
+        if(err) throw err;
+    });
 });
