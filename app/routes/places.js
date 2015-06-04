@@ -15,6 +15,15 @@ var placesRoutes = function(app, client){
         });
     });
 
+    app.get('/places/user/:userId', function getMyPlaces(req, res, next){
+        var params = {query: req.query, userId: req.params.userId};
+        places.getMyPlaces(params, function(err, places){
+            if(err) return next(err);
+            if(!places) return res.status(HTTPStatus.NOT_FOUND).send('You have no favorites places');
+            return res.status(HTTPStatus.OK).send(places);
+        });
+    });
+
     app.get('/places/:id', function getPlace(req, res, next){
         var params = {query: req.query, id: req.params.id};
         places.getPlace(params, function(err, place){
@@ -23,20 +32,6 @@ var placesRoutes = function(app, client){
             return res.status(HTTPStatus.OK).send(place);
         });
     });
-
-    app.put('/places/:id', authenticator, function addPlace(req, res, next){
-        if(!canEdit(req.user, req.params.id)) return res.status(HTTPStatus.FORBIDDEN).send('Cant Edit this place');
-        var place = req.body;
-        places.editPlace(place, function(err, place){
-            if(err) return next(err);
-            return res.status(HTTPStatus.OK).send(place);
-        });
-    });
 };
 
 module.exports = placesRoutes;
-
-
-function canEdit(owner, placeId){
-    return _.includes(owner.user.places, placeId);
-}
