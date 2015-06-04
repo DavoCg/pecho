@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "MD5": "^1.2.2",
     "adotcomponents": "^2.9.7",
     "adotconfig": "^1.2.0",
     "async": "^1.2.0",

@@ -14,6 +14,14 @@ module.exports = components.define({
         return done();
     },
 
+    /**
+     * Get all places based on query conditions
+     * @param req
+     * @param res
+     * @param next
+     * @returns {Request}
+     */
+
     getPlaces: function getPlaces(req, res, next){
         var isQueryValid = this.checker.all(req.query);
         if(!isQueryValid) return res.status(HTTPStatus.BAD_REQUEST).send('Wrong query');
@@ -29,6 +37,14 @@ module.exports = components.define({
             return res.status(HTTPStatus.OK).send(places);
         })
     },
+
+    /**
+     * Get One place based on place id
+     * @param req
+     * @param res
+     * @param next
+     * @returns {Request}
+     */
 
     getPlace: function getPlace(req, res, next){
         var isQueryValid = this.checker.one(req.query);

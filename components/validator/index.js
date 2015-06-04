@@ -1,7 +1,8 @@
 var components = require('adotcomponents');
 
 var validators = {
-    places : require('./places')
+    places : require('./places'),
+    owners : require('./owners')
 };
 
 module.exports = components.define({
