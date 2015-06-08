@@ -5,7 +5,7 @@ var md5 = require('MD5');
 
 module.exports = components.define({
     name: 'authentication',
-    required: ['serer', 'queries', 'database', 'validator'],
+    required: ['server', 'queries', 'database', 'validator'],
     init: function init(done){
         this.checker = this.validator.getValidator('owners');
         this.q = this.queries.getQueries('owners');
