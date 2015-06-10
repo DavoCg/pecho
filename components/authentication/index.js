@@ -33,10 +33,10 @@ module.exports = components.define({
         };
         this.database.get(params, function(err, result){
             if(err) return next(err);
-            if(!result.length) return res.status(HTTPStatus.UNAUTHORIZED).send('No mail match');
-            if(!checkPassword(req.body.password, result[0].password)) return res.status(HTTPStatus.UNAUTHORIZED).send('wrong password');
+            if(!result.length) return res.status(HTTPStatus.UNAUTHORIZED).send('Email or Password incorrect');
+            if(!checkPassword(req.body.password, result[0].password)) return res.status(HTTPStatus.UNAUTHORIZED).send('Email or Password incorrect');
             var token = generateToken.call(self, result[0]);
-            return res.status(HTTPStatus.OK).send({token: token})
+            return res.status(HTTPStatus.OK).send({token: token, admin: result[0].admin})
         })
     },
 
@@ -69,9 +69,9 @@ module.exports = components.define({
      * @returns {*}
      */
 
-    hasAccess: function(req, res, next){
+    isAdmin: function(req, res, next){
         if(!req.user) return res.status(HTTPStatus.UNAUTHORIZED).send('No req user');
-        this.error('REQ USER', req.user);
+        if(!req.user.admin) return res.status(HTTPStatus.UNAUTHORIZED).send('Not Admin');
         return next();
     }
 });

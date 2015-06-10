@@ -13,6 +13,7 @@ function deletePlaces(callback){
     request
         .head('http://localhost:9200/places')
         .end(function(err, res){
+            if(err) return callback(err);
             if(res.statusCode === 404) return callback();
             request
                 .del('http://localhost:9200/places')
@@ -24,6 +25,7 @@ function deleteOwners(callback){
     request
         .head('http://localhost:9200/owners')
         .end(function(err, res){
+            if(err) return callback(err);
             if(res.statusCode === 404) return callback();
             request
                 .del('http://localhost:9200/owners')

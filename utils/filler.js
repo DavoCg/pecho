@@ -1,16 +1,17 @@
 var request = require('superagent');
 var generatePlace = require('./faker');
 var async = require('async');
+var md5 = require('MD5');
 
 var urlPlaces = 'http://localhost:9200/places/restaurant';
 var urlOwners = 'http://localhost:9200/owners/account';
 var nbRandoms = 100;
 
-function addOwner(callback){
+function addAdminOwner(callback){
     var user = {
-        email: 'owner@test.fr',
-        password: '72122ce96bfec66e2396d2e25225d70a', //owner in MD5
-        places: ['123abc']
+        email: 'admin@pecho.fr',
+        password: md5('admin'),
+        admin: true
     };
 
     request
@@ -47,7 +48,7 @@ function filler(){
                 async.eachLimit(generateRandoms(nbRandoms), 10, postData, callback);
             },
             function(callback){
-                addOwner(callback)
+                addAdminOwner(callback)
             }
         ],
         function(err){

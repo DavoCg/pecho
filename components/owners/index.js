@@ -9,7 +9,7 @@ module.exports = components.define({
     init: function init(done){
         var auth = this.authentication;
         this.checker = this.validator.getValidator('owners');
-        this.server.addRoute('post', '/owners', this.addOwner, {middlewares: [auth.isAuth, auth.hasAccess]});
+        this.server.addRoute('post', '/owners', this.addOwner, {middlewares: [auth.isAuth, auth.isAdmin]});
         return done();
     },
 
@@ -22,7 +22,7 @@ module.exports = components.define({
      */
 
     addOwner: function addOwner(req, res, next){
-        this.error('bosy', req.body);
+        this.error('body', req.body);
         var isBodyValid = this.checker.add(req.body);
         if(!isBodyValid) return res.status(HTTPStatus.BAD_REQUEST).send('Wrong body');
 

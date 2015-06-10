@@ -1,6 +1,7 @@
 var components = require('adotcomponents');
 var express = require('express');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var _ = require('lodash');
 
 module.exports = components.define({
@@ -8,6 +9,7 @@ module.exports = components.define({
     init: function init(done){
         this.app = express();
         this.app.use(bodyParser.json());
+        this.app.use(cors());
         this.app.listen(this.config.port, this.config.bind, done);
     },
     addRoute: function addRoute(method, route, fn, options){

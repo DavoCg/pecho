@@ -16,6 +16,7 @@
     "async": "^1.2.0",
     "body-parser": "^1.12.4",
     "chance": "^0.7.5",
+    "cors": "^2.7.1",
     "elasticsearch": "^4.1.0",
     "express": "^4.12.4",
     "http-status": "^0.1.8",
